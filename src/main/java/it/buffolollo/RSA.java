@@ -11,6 +11,8 @@ import java.security.SecureRandom;
 public class RSA {
     private static final Logger logger = LogManager.getLogger(RSA.class);
 
+    private int bitLength = 1024;
+
     private BigInteger p;
     private BigInteger q;
     private BigInteger n;
@@ -18,11 +20,17 @@ public class RSA {
     private BigInteger e;
     private BigInteger d;
 
-    public RSA() {
-        p = generatePrimeNumber(64);
+    public RSA(int bitLength) {
+        this.bitLength = bitLength;
+
+        init();
+    }
+
+    private void init() {
+        p = generatePrimeNumber(bitLength);
         logger.info("Generated prime number p: " + p);
 
-        q = generatePrimeNumber(64);
+        q = generatePrimeNumber(bitLength);
         logger.info("Generated prime number q: " + q);
 
         n = p.multiply(q);
@@ -40,7 +48,6 @@ public class RSA {
 
         logger.info("Public key: (" + n + ", " + e + ")");
         logger.info("Private key: (" + n + ", " + d + ")");
-
     }
 
     private BigInteger generatePrimeNumber(int bitLength) {
