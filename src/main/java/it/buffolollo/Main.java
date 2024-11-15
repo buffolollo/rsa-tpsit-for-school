@@ -23,11 +23,11 @@ public class Main {
 
         String encryptedMessage = rsa.encrypt(message);
 
-        System.out.println("Encrypted message: " + encryptedMessage);
+        logger.info("Encrypted message: " + encryptedMessage);
 
         String decryptedMessage = rsa.decrypt(encryptedMessage);
 
-        System.out.println("Decrypted message: " + decryptedMessage);
+        logger.info("Decrypted message: " + decryptedMessage);
     }
 
     public static String getInput() {
